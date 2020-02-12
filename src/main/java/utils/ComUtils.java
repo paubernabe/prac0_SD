@@ -3,7 +3,8 @@ package utils;
 import java.io.*;
 
 public class ComUtils {
-    private final int STRSIZE = 40;
+    private final int STRSIZE = 20;
+    private final int CHARSIZE = 1;
 
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
@@ -58,6 +59,26 @@ public class ComUtils {
             bStr[i] = (byte) ' ';
 
         dataOutputStream.write(bStr, 0,STRSIZE);
+    }
+
+    /*nous mètodes a fer*/
+
+    public char readChar() throws IOException {
+        byte bStr[] = new byte[CHARSIZE];
+        char c;
+
+        bStr = read_bytes(CHARSIZE);
+        c = (char) bStr[0];
+
+        return c;
+    }
+
+    public void writeChar(char c) throws IOException {
+        byte b[] = new byte[CHARSIZE];
+        b[0] = (byte) c;
+
+        dataOutputStream.write(b,0,CHARSIZE);
+
     }
 
     private byte[] int32ToBytes(int number, Endianness endianness) {
